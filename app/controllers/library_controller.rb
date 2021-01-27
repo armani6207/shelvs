@@ -20,4 +20,20 @@ class LibraryController < ApplicationController
         erb :'/library/show'
     end
 
+    get '/libraries/:id/edit' do
+        @books = Book.all
+        @session = session
+        @library = Library.find(params[:id])
+        erb :'/library/edit'
+    end
+
+    patch '/libraries/:id' do
+        library = Library.find(params[:id])
+        library.update(params[:library])
+        if params[:book][:title] != ""
+            library.books << Book.create(params[:book])
+        end
+        redirect "/libraries/#{library.id}"
+    end
+
 end

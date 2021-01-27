@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit <%= @library.name %> | Shelvs</title>
+    </head>
+
+    <body>
+        <% if Helpers.current_user(@session) == @library.user %>
+            <h1>Edit Your library below</h1>
+
+            <form method="POST" action=<%= "/libraries/#{@library.id}" %>>
+                <input type="hidden" name="_method" value="PATCH">
+                <p>Library Name: <input type="text" name="library[name]" value=<%= @library.name %>></p>
+
+                <p>Choose Books:</p>
+                
+                <% @books.each do |book| %>
+                    <input type="checkbox" name="library[book_ids][]" value=<%= book.id %> <%= 'checked' if @library.books.include?(book) %>><%= "#{book.title} | #{book.author}" %>
+                <% end %>
+                
+                <br>
+
+                <p>and/or, add a new book:</p>
+
+                <p>Title:<input type="text" name="book[title]"></p>
+                <p>Author:<input type="text" name="book[author]"></p>
+
+                <input type="submit" value="Update Table">
+            </form>
+
+        <% else %>
+            <h3>Please Log In to Continue</h3>
+        <% end %>
+    </body>
+</html>
