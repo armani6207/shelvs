@@ -6,6 +6,6 @@ end
 
 use Rack::MethodOverride
 
-use LibraryController
 use BookController
+use LibraryController
 run ApplicationController

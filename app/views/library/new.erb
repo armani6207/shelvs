@@ -8,7 +8,20 @@
         <% if Helpers.is_logged_in?(@session) %>
             <h1>Create a new library below</h1>
             <form method="POST" action="/libraries">
-                <p>Library Name: <input type="text" name="library[:name]">
+                <p>Library Name: <input type="text" name="library[name]"></p>
+
+                <p>Choose Books:</p>
+                
+                <% @books.each do |book| %>
+                    <input type="checkbox" name="library[book_ids][]" value=<%= book.id %>><%= "#{book.title} | #{book.author}" %>
+                <% end %>
+                
+                <br>
+
+                <p>and/or, add a new book:</p>
+
+                <p>Title:<input type="text" name="book[title]"></p>
+                <p>Author:<input type="text" name="book[author]"></p>
 
                 <input type="submit" value="Create Table">
             </form>
