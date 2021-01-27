@@ -12,9 +12,12 @@ class LibraryController < ApplicationController
         if !params[:book].empty?
             library.books << Book.create(params[:book])
         end
-        redirect '/'
+        redirect "/libraries/#{library.id}"
     end
 
-
+    get '/libraries/:id' do
+        @library = Library.find(params[:id])
+        erb :'/library/show'
+    end
 
 end
