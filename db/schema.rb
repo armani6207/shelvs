@@ -10,17 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210127003023) do
+ActiveRecord::Schema.define(version: 20210127161255) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
   end
 
+  create_table "books_libraries", id: false, force: :cascade do |t|
+    t.integer "library_id", null: false
+    t.integer "book_id", null: false
+  end
+
   create_table "libraries", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
-    t.integer "book_id"
   end
 
   create_table "users", force: :cascade do |t|
