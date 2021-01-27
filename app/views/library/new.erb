@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <title>Create A New Library | Shelvs</title>
     </head>
 
     <body>
+        <% if Helpers.is_logged_in?(@session) %>
+            <h1>Create a new library below</h1>
+            <form method="POST" action="/libraries">
+                <p>Library Name: <input type="text" name="library[:name]">
+            </form>
+        <% else %>
+            <h3>Please Log In to Continue</h3>
+        <% end %>
     </body>
 </html>
