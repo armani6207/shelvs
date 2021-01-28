@@ -1,3 +1,4 @@
+require_relative './application_controller.rb'
 class BookController < ApplicationController
 
     get '/books' do

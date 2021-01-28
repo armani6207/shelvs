@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= @user.name %></title>
+    </head>
+
+    <body>
+        <form method="POST" action="/user/<%= @user.id %>">
+            <input type="hidden" name="_method" value="PATCH">
+            <p>Name: <input type="text" name="name" value=<%= @user.name %>>
+            <p>Email: <input type="text" name="email" value=<%= @user.email %>>
+            <h3>Change Password:</h3>
+            <p>Current Password: <input type="password" name="current_password"></p>
+            <p>New Password: <input type="password" name="new_password"></p>
+            <input type="submit" value="Save">
+        </form>
+    </body>
+</html>

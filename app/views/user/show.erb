@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= @user.name %> | Shelvs</title>
+    </head>
+
+    <body>
+        <% if Helpers.current_user(session) == @user %>
+            <form action="/user/<%= @user.id %>/edit">
+                <input type="submit" Value="Edit Account Info">
+            </form>
+        <% end %>
+        <h1><%= @user.name %></h1>
+        <h3>Libraries:</h3>
+        <% @libraries.each do |library|%>
+            <a href=<%= "/libraries/#{library.id}" %>><p><%= "#{library.name}" %></p></a>
+        <% end %>
+    </body>
+
+</html>
