@@ -2,11 +2,11 @@ class ApplicationController < Sinatra::Base
 
     register Sinatra::ActiveRecordExtension
         enable :sessions
-        set :session_secret, "password_security"
+        set :session_secret, "My Session Secret"
         set :views, Proc.new { File.join(root, "../views/") }
     
     get '/' do
-        "Hello World"
+        erb :home
     end
 
     get "/error" do
