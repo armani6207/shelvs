@@ -15,11 +15,16 @@ class BookController < ApplicationController
     end
 
     post '/books' do
-        book = Book.create(params[:book])
-        if params[:library][:name] != ""
-            book.libraries << Library.create(name: params[:library][:name], user_id: session[:user_id])
+        if !Book.exists?(params[:book])
+            book = Book.create(params[:book])
+            if params[:library][:name] != ""
+                book.libraries << Library.create(name: params[:library][:name], user_id: session[:user_id])
+            end
+            redirect "/books/#{book.id}"
+        else
+            book = Book.find_by(params[:book])
+            redirect "books/#{book.id}"
         end
-        redirect "/books/#{book.id}"
     end
 
     get '/books/:id' do
