@@ -45,4 +45,9 @@ class AccountController < ApplicationController
         end
     end
 
+    delete '/user/:id' do
+        User.delete(params[:id])
+        redirect '/logout'
+    end
+
 end

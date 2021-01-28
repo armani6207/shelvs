@@ -14,5 +14,10 @@
             <p>New Password: <input type="password" name="new_password"></p>
             <input type="submit" value="Save">
         </form>
+
+        <form method="POST" action="/user/<%= @user.id %>">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="DELETE ACCOUNT">
+        </form>
     </body>
 </html>
