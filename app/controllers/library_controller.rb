@@ -1,5 +1,10 @@
 class LibraryController < ApplicationController
 
+    get '/libraries' do
+        @libraries = Library.all
+        erb :'/library/index'
+    end
+
     get '/libraries/new' do
         @session = session
         @books = Book.all
@@ -16,15 +21,24 @@ class LibraryController < ApplicationController
     end
 
     get '/libraries/:id' do
-        @library = Library.find(params[:id])
-        erb :'/library/show'
+        if Library.exists?(params[:id])
+            @library = Library.find(params[:id])
+            erb :'/library/show'
+        else
+            redirect '/error'
+        end
     end
 
     get '/libraries/:id/edit' do
         @books = Book.all
         @session = session
-        @library = Library.find(params[:id])
-        erb :'/library/edit'
+
+        if Library.exists?(params[:id])
+            @library = Library.find(params[:id])
+            erb :'/library/edit'
+        else
+            redirect '/error'
+        end
     end
 
     patch '/libraries/:id' do
@@ -34,6 +48,11 @@ class LibraryController < ApplicationController
             library.books << Book.create(params[:book])
         end
         redirect "/libraries/#{library.id}"
+    end
+
+    delete '/libraries/:id' do
+        Library.delete(params[:id])
+        redirect '/'
     end
 
 end

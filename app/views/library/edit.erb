@@ -28,8 +28,13 @@
                 <input type="submit" value="Update Table">
             </form>
 
+            <form method="POST" action=<%= "/libraries/#{@library.id}" %>>
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" value="DELETE" id="delete_button">
+            </form>
+
         <% else %>
-            <h3>Please Log In to Continue</h3>
+            <h3>You do not have access to this page. Please log in to the owner's account.</h3>
         <% end %>
     </body>
 </html>

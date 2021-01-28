@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Libraries | Shelvs</title>
+    </head>
+    <body>
+        <% @libraries.each do |library|%>
+            <a href=<%= "/libraries/#{library.id}" %>><h1><%= "#{library.name} | #{library.user.name}" %></h1></a>
+        <% end %>
+    </body>
+</html>
