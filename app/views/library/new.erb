@@ -8,7 +8,7 @@
         <% if Helpers.is_logged_in?(@session) %>
             <h1>Create a new library below</h1>
             <form method="POST" action="/libraries">
-                <p>Library Name: <input type="text" name="library[name]"></p>
+                <p>Library Name: <input type="text" name="library[name]" required></p>
 
                 <p>Choose Books:</p>
                 

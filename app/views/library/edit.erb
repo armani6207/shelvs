@@ -10,7 +10,7 @@
 
             <form method="POST" action=<%= "/libraries/#{@library.id}" %>>
                 <input type="hidden" name="_method" value="PATCH">
-                <p>Library Name: <input type="text" name="library[name]" value="<%= @library.name %>"></p>
+                <p>Library Name: <input type="text" name="library[name]" value="<%= @library.name %>" required></p>
 
                 <p>Choose Books:</p>
                 

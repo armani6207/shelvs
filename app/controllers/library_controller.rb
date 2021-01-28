@@ -48,12 +48,17 @@ class LibraryController < ApplicationController
     end
 
     patch '/libraries/:id' do
+        user = User.find(session[:user_id])
         library = Library.find(params[:id])
-        library.update(params[:library])
-        if params[:book][:title] != ""
-            library.books << Book.create(params[:book])
+        if (library.name != params[:library][:name] ? !user.libraries.exists?(name: params[:library][:name]) : true)
+            library.update(params[:library])
+            if params[:book][:title] != ""
+                library.books << Book.create(params[:book])
+            end
+            redirect "/libraries/#{library.id}"
+        else
+            redirect '/error'
         end
-        redirect "/libraries/#{library.id}"
     end
 
     delete '/libraries/:id' do
