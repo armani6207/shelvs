@@ -13,12 +13,17 @@ class LibraryController < ApplicationController
     end
 
     post '/libraries' do
-        library = Library.create(params[:library])
-        library.update(user_id: session[:user_id])
-        if !params[:book][:title] != ""
-            library.books << Book.create(params[:book])
+        user = User.find(session[:user_id])
+        if !user.libraries.exists?(name: params[:library][:name])
+            library = Library.create(params[:library])
+            library.update(user_id: session[:user_id])
+            if !params[:book][:title] != ""
+                library.books << Book.create(params[:book])
+            end
+            redirect "/libraries/#{library.id}"
+        else
+            redirect '/libraries/new'
         end
-        redirect "/libraries/#{library.id}"
     end
 
     get '/libraries/:id' do
