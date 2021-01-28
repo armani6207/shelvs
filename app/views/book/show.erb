@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= @book.title %> | Shelvs</title>
+    </head>
+    <body>
+        <h1><%= @book.title %></h1>
+        <small>Written By:<%= @book.author %></small>
+        
+        <h3>Libraries This Book Is In:</h3>
+        <% @book.libraries.each do |library| %>
+            <p><%= "#{library.name} | #{library.user.name}" %></p>
+        <%end%>
+    </body>
+</html>

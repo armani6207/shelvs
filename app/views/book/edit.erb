@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit <%= @book.title %> | Shelvs</title>
+    </head>
+
+    <body>
+        <% if Helpers.is_logged_in?(@session) %>
+            <h1>Edit a book below</h1>
+            <form method="POST" action=<%= "/books/#{@book.id}" %>>
+                <input type="hidden" name="_method" value="PATCH">
+                <p>Book Tittle: <input type="text" name="book[title]" value="<%= @book.title %>"></p>
+                <p>Author: <input type="text" name="book[author]" value="<%= @book.author %>"></p>
+
+                <p>Your libraries:</p>
+                
+                <% @libraries.each do |library| %>
+                    <input type="checkbox" name="book[library_ids][]" value=<%= library.id %> <%= 'checked' if @book.libraries.include?(library) %>><%= "#{library.name}" %>
+                <% end %>
+                
+                <br>
+
+                <p>and/or, create a new library:</p>
+
+                <p>Name:<input type="text" name="library[name]"></p>
+
+                <input type="submit" value="Edit Book">
+            </form>
+
+            <form method="POST" action=<%= "/books/#{@book.id}" %>>
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" value="DELETE" id="delete_button">
+            </form>
+        <% else %>
+            <h3>Please Log In to Continue</h3>
+        <% end %>
+    </body>
+</html>

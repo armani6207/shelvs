@@ -14,7 +14,7 @@ class LibraryController < ApplicationController
     post '/libraries' do
         library = Library.create(params[:library])
         library.update(user_id: session[:user_id])
-        if !params[:book].empty?
+        if !params[:book][:title] != ""
             library.books << Book.create(params[:book])
         end
         redirect "/libraries/#{library.id}"
@@ -52,7 +52,7 @@ class LibraryController < ApplicationController
 
     delete '/libraries/:id' do
         Library.delete(params[:id])
-        redirect '/'
+        redirect '/books'
     end
 
 end

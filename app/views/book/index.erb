@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Books | Shelvs</title>
+    </head>
+    <body>
+        <% @books.each do |book|%>
+            <a href=<%= "/books/#{book.id}" %>><h1><%= "#{book.title} | #{book.author}" %></h1></a>
+        <% end %>
+    </body>
+</html>
