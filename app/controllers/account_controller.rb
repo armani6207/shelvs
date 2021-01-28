@@ -26,18 +26,22 @@ class AccountController < ApplicationController
     end
 
     patch '/user/:id' do
-        puts params
         user = User.find(params[:id])
-        user.update(name: params["name"], email: params["email"])
-        if params["current_password"] != ""
-            if user.authenticate(params["current_password"])
-                user.password=(params["new_password"])
-                user.save ? (redirect '/account') : (redirect '/error')
+        if (user.email != params["email"] ? !User.exists?(email: params["email"]) : true)
+            user.update(name: params["name"], email: params["email"])
+        
+            if params["current_password"] != ""
+                if user.authenticate(params["current_password"])
+                    user.password=(params["new_password"])
+                    user.save ? (redirect '/account') : (redirect '/error')
+                else
+                    redirect '/error'
+                end
             else
-                redirect '/error'
+                redirect '/account'
             end
         else
-            redirect '/account'
+            redirect "/user/#{user.id}/edit"
         end
     end
 
