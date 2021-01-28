@@ -15,14 +15,14 @@ class BookController < ApplicationController
     end
 
     post '/books' do
-        if !Book.exists?(params[:book])
+        if !Book.exists?(title: params[:book][:title], author: params[:book][:author])
             book = Book.create(params[:book])
             if params[:library][:name] != ""
                 book.libraries << Library.create(name: params[:library][:name], user_id: session[:user_id])
             end
             redirect "/books/#{book.id}"
         else
-            book = Book.find_by(params[:book])
+            book = Book.find_by(title: params[:book][:title], author: params[:book][:author])
             redirect "books/#{book.id}"
         end
     end
@@ -52,11 +52,15 @@ class BookController < ApplicationController
 
     patch '/books/:id' do
         book = Book.find(params[:id])
-        book.update(params[:book])
-        if params[:library][:name] != ""
-            book.libraries << Library.create(name: params[:library][:name], user_id: session[:user_id])
+        if ((book.title != params[:book][:title]) || (book.author != params[:book][:author]) ? !Book.exists?(title: params[:book][:title], author: params[:book][:author]) : true)
+            book.update(params[:book])
+            if params[:library][:name] != ""
+                book.libraries << Library.create(name: params[:library][:name], user_id: session[:user_id])
+            end
+            redirect "/books/#{book.id}"
+        else
+            redirect "books/#{book.id}/edit"
         end
-        redirect "/books/#{book.id}"
     end
 
     delete '/books/:id' do
