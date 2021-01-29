@@ -29,6 +29,7 @@ body {
 
 .button {
     font-size: 18px;
+    color: black;
     background: #05CEBB;
     width: 90px;
     margin-left: auto;

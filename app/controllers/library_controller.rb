@@ -50,9 +50,10 @@ class LibraryController < ApplicationController
         end
     end
 
-    patch '/libraries/:id' do
+    patch '/libraries/:id' do 
         user = User.find(session[:user_id])
         library = Library.find(params[:id])
+        Helpers.redirect_if_logged_out(session, library.user)
         if (library.name != params[:library][:name] ? !user.libraries.exists?(name: params[:library][:name]) : true)
             library.update(params[:library])
             if params[:book][:title] != ""
