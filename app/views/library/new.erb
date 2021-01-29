@@ -7,9 +7,12 @@
 
     <body>
         <% if Helpers.is_logged_in?(@session) %>
-            <h1>Create a new library below</h1>
+            <br>
+            <h1 class="header">Create a new library below</h1>
+
+            <div class="form">
             <form method="POST" action="/libraries">
-                <p>Library Name: <input type="text" name="library[name]" required></p>
+                <input type="text" name="library[name]" placeholder="Library Name" required>
 
                 <p>Library Cover Image: <input type="file" name="image"></p>
 
@@ -23,11 +26,12 @@
 
                 <p>and/or, add a new book:</p>
 
-                <p>Title:<input type="text" name="book[title]"></p>
-                <p>Author:<input type="text" name="book[author]"></p>
+                <input type="text" name="book[title]" placeholder="Title">
+                <input type="text" name="book[author]" placeholder="Author">
 
                 <input type="submit" value="Create Table">
             </form>
+            </div>
         <% else %>
             <h3>Please Log In to Continue</h3>
         <% end %>
