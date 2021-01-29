@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="css/navbar.css" media="screen"/>
+        <link rel="stylesheet" href="../css/navbar.css" media="screen"/>
     </head>
     <body>
-        <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/libraries">Libraries</a></li>
-        <li><a href="/books">Books</a></li>
-        </ul>
+
+    <header>
+        <nav>
+            <ul class="nav_ul">
+                <li class="logo nav_li"><h1 class="logo">SHELVS</h1></li>
+                <% if Helpers.is_logged_in?(session) %>
+                    <li class="account nav_li"><a href="/account"><%= Helpers.current_user(session).name %></a></li>
+                <% else %>
+                    <li class="account nav_li"><a href="/login">Log In</a></li>
+                <% end %>
+                <li class="nav_li"><a href="/books">Books</a></li>
+                <li class="nav_li"><a href="/libraries">Libraries</a></li>
+                <li class="nav_li"><a href="/">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
         <%= yield %>
+
     </body>
 </html>

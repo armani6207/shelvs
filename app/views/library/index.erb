@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="../css/style.css" media="screen"/>
         <title>Libraries | Shelvs</title>
     </head>
     <body>
+        <ul>
         <% @libraries.each do |library|%>
-            <a href=<%= "/libraries/#{library.id}" %>><h1><%= "#{library.name} | #{library.user.name}" %></h1></a>
+            <li><a href=<%= "/libraries/#{library.id}" %>><h1><%= "#{library.name} | #{library.user.name}" %></h1></a></li>
         <% end %>
+        </ul>
     </body>
 </html>
