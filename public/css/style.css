@@ -13,6 +13,7 @@ body {
 }
 
 .form input {
+    color:  #05CEBB;
     font-size: 18px;
     padding: 10px 20px 10px 5px;
     border: none;

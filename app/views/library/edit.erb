@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="../css/style.css" media="screen"/>
+        <link rel="stylesheet" href="../../css/style.css" media="screen"/>
         <title>Edit <%= @library.name %> | Shelvs</title>
     </head>
 
     <body>
         <% if Helpers.current_user(@session) == @library.user %>
-            <h1>Edit Your library below</h1>
-
+            <br>
+            <h1 class="header">Edit Your library below</h1>
+            
+            <div class="form">
             <form method="POST" action=<%= "/libraries/#{@library.id}" %>>
                 <input type="hidden" name="_method" value="PATCH">
+                
+                <img class="library_image" src=<%= @library.cover != nil ? @library.cover : "../../images/library_default.png" %>>
+                <input type="file" name="image">
+
                 <p>Library Name: <input type="text" name="library[name]" value="<%= @library.name %>" required></p>
 
                 <p>Choose Books:</p>
@@ -23,16 +29,18 @@
 
                 <p>and/or, add a new book:</p>
 
-                <p>Title:<input type="text" name="book[title]"></p>
-                <p>Author:<input type="text" name="book[author]"></p>
+                <input type="text" name="book[title]" placeholder="Title">
+                <input type="text" name="book[author]" placeholder="Author">
 
                 <input type="submit" value="Update Table">
             </form>
+            
 
             <form method="POST" action=<%= "/libraries/#{@library.id}" %>>
                 <input type="hidden" name="_method" value="DELETE">
                 <input type="submit" value="DELETE" id="delete_button">
             </form>
+            </div>
 
         <% else %>
             <h3>You do not have access to this page. Please log in to the owner's account.</h3>
