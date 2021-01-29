@@ -6,15 +6,22 @@
     </head>
 
     <body>
+
+        <div class="form">
+            <h1 class="title">Edit Your Profile</h1>
         <form method="POST" action="/user/<%= @user.id %>">
             <input type="hidden" name="_method" value="PATCH">
             <p>Name: <input type="text" name="name" value=<%= @user.name %>>
+            <br>
             <p>Email: <input type="text" name="email" value=<%= @user.email %>>
             <h3>Change Password:</h3>
-            <p>Current Password: <input type="password" name="current_password"></p>
-            <p>New Password: <input type="password" name="new_password"></p>
+            <input type="password" name="current_password" placeholder="Current Password">
+            <br>
+            <input type="password" name="new_password" placeholder="New Password">
+            <br>
             <input type="submit" value="Save">
         </form>
+        </div>
 
         <form method="POST" action="/user/<%= @user.id %>">
             <input type="hidden" name="_method" value="DELETE">

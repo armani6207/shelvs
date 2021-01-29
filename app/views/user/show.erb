@@ -8,20 +8,23 @@
     <body>
         <br>
         <h1 class="title"><%= @user.name %></h1>
+
+        <% if Helpers.current_user(session) == @user %>
+            <form action="/user/<%= @user.id %>/edit">
+                <input type="submit" Value="Edit Profile">
+            </form>
+        <% end %>
+
+        <br>
+
         <h3 class="header">Libraries:</h3>
 
         <% @libraries.each do |library|%>
             <a class="library" href=<%= "/libraries/#{library.id}" %>>
-                <img class="library_image" src=<%= library.cover != nil ? library.cover : "../images/library_default.png" %>>
+                <img class="cover_image" src=<%= library.cover != nil ? library.cover : "../images/library_default.png" %>>
                 <p class="name"><%= "#{library.name}" %></p>
             </a>
             <br>
-        <% end %>
-
-        <% if Helpers.current_user(session) == @user %>
-            <form action="/user/<%= @user.id %>/edit">
-                <input type="submit" Value="Edit Account Info">
-            </form>
         <% end %>
         
     </body>

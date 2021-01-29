@@ -12,6 +12,7 @@
             <h1 class="title">Edit a book below</h1>
             <form method="POST" action=<%= "/books/#{@book.id}" %>>
                 <input type="hidden" name="_method" value="PATCH">
+                <img class="cover_image" src=<%= @book.cover != nil ? @book.cover : "../../images/book_default.png" %>>
                 <p>Book Tittle: <input type="text" name="book[title]" value="<%= @book.title %>"></p>
                 <p>Author: <input type="text" name="book[author]" value="<%= @book.author %>"></p>
 
