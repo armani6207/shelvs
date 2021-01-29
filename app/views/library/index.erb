@@ -5,6 +5,9 @@
         <title>Libraries | Shelvs</title>
     </head>
     <body>
+        <br>
+        <button class="button" type="button" value="Create Library">Create Library<a href="/libraries/new"></button>
+        <br>
         <h1 class="title">All Libraries:</h1>
         <% @libraries.each do |library|%>
             <a class="library" href=<%= "/libraries/#{library.id}" %>>

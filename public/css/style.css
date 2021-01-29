@@ -13,7 +13,6 @@ body {
 }
 
 .form input {
-    color:  #05CEBB;
     font-size: 18px;
     padding: 10px 20px 10px 5px;
     border: none;
@@ -29,6 +28,7 @@ body {
 }
 
 .button {
+    font-size: 18px;
     background: #05CEBB;
     width: 90px;
     margin-left: auto;
