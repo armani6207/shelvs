@@ -5,12 +5,23 @@
         <title><%= @library.name %> | Shelvs</title>
     </head>
     <body>
-        <h1><%= @library.name %></h1>
-        <small>Owned By:<%= @library.user.name %></small>
+        <img class="cover_image" src=<%= @library.cover != nil ? @library.cover : "../images/library_default.png" %>>
+        <p class="title"><%= "#{@library.name}" %></p>
+        <p class ="name">Owned By: <%= @library.user.name %></p>
         
-        <h3>Books:</h3>
+        <h1>Books:</h1>
         <% @library.books.each do |book| %>
-            <p><%= "#{book.title} | #{book.author}" %></p>
+            <a href=<%= "/books/#{book.id}" %>>
+                <img class="cover_image" src=<%= book.cover != nil ? book.cover : "../images/book_default.png" %>>
+                <p class="name"><%= "#{book.title} | #{book.author}" %></p>
+            </a>
         <%end%>
+
+        <% if Helpers.current_user(@session) == @library.user %>
+            <form action="/libraries/<%= @library.id %>/edit">
+                <input type="submit" Value="Edit Library Info">
+            </form>
+        <% end %>
+
     </body>
 </html>

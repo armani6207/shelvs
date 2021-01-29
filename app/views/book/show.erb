@@ -11,10 +11,15 @@
         <h3 class="header">Libraries This Book Is In:</h3>
         <% @book.libraries.each do |library| %>
             <a class="library" href=<%= "/libraries/#{library.id}" %>>
-                <img class="library_image" src=<%= library.cover != nil ? library.cover : "../images/library_default.png" %>>
+                <img class="cover_image" src=<%= library.cover != nil ? library.cover : "../images/library_default.png" %>>
                 <p class="name"><%= "#{library.name}" %></p>
             </a>
             <br>
         <%end%>
+
+        <form action="/books/<%= @book.id %>/edit">
+            <input type="submit" Value="Edit Book Info">
+        </form>
+
     </body>
 </html>

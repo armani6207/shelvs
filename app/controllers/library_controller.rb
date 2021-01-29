@@ -30,6 +30,7 @@ class LibraryController < ApplicationController
 
     get '/libraries/:id' do
         if Library.exists?(params[:id])
+            @session = session
             @library = Library.find(params[:id])
             erb :'/library/show'
         else

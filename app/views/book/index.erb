@@ -6,7 +6,10 @@
     </head>
     <body>
         <% @books.each do |book|%>
-            <a href=<%= "/books/#{book.id}" %>><h1><%= "#{book.title} | #{book.author}" %></h1></a>
+            <a href=<%= "/books/#{book.id}" %>>
+                <img class="cover_image" src=<%= book.cover != nil ? book.cover : "../images/book_default.png" %>>
+                <p class="name"><%= "#{book.title} | #{book.author}" %></p>
+            </a>
         <% end %>
     </body>
 </html>
