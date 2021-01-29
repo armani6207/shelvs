@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="../css/style.css" media="screen"/>
+        <link rel="stylesheet" href="../../css/style.css" media="screen"/>
         <title>Edit <%= @book.title %> | Shelvs</title>
     </head>
 
     <body>
         <% if Helpers.is_logged_in?(@session) %>
-            <h1>Edit a book below</h1>
+            
+            <div class="form">
+            <h1 class="title">Edit a book below</h1>
             <form method="POST" action=<%= "/books/#{@book.id}" %>>
                 <input type="hidden" name="_method" value="PATCH">
                 <p>Book Tittle: <input type="text" name="book[title]" value="<%= @book.title %>"></p>
@@ -23,10 +25,11 @@
 
                 <p>and/or, create a new library:</p>
 
-                <p>Name:<input type="text" name="library[name]"></p>
-
-                <input type="submit" value="Edit Book">
+                <input type="text" name="library[name]" placeholder="Name">
+                <br>
+                <input type="submit" value="Update Book">
             </form>
+            </div>
 
             <form method="POST" action=<%= "/books/#{@book.id}" %>>
                 <input type="hidden" name="_method" value="DELETE">

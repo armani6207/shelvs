@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="../css/style.css" media="screen"/>
+        <link rel="stylesheet" href="../../css/style.css" media="screen"/>
         <title>Add A New Book | Shelvs</title>
     </head>
 
     <body>
         <% if Helpers.is_logged_in?(@session) %>
-            <h1>Add a new book below</h1>
+            
+
+            <div class="form">
+            <h1 class="title">Add a New Book</h1>
             <form method="POST" action="/books">
-                <p>Book Tittle: <input type="text" name="book[title]"></p>
-                <p>Author: <input type="text" name="book[author]"></p>
+                <input type="text" name="book[title]" placeholder="Title">
+                <input type="text" name="book[author]" placeholder="Author">
 
                 <p>Add Book to Libraries(optional):</p>
                 
@@ -22,10 +25,11 @@
 
                 <p>and/or, create a new library:</p>
 
-                <p>Name:<input type="text" name="library[name]"></p>
+                <input type="text" name="library[name]" placeholder="Name">
 
                 <input type="submit" value="Create Book">
             </form>
+            </div>
         <% else %>
             <h3>Please Log In to Continue</h3>
         <% end %>

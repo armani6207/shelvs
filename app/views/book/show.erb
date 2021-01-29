@@ -5,6 +5,7 @@
         <title><%= @book.title %> | Shelvs</title>
     </head>
     <body>
+        <img class="cover_image" src=<%= @book.cover != nil ? @book.cover : "../images/book_default.png" %>>
         <h1 class="title"><%= @book.title %></h1>
         <h1>Written By:<%= @book.author %></h1>
         <br>
