@@ -5,6 +5,10 @@
         <title>Books | Shelvs</title>
     </head>
     <body>
+        <br>
+        <button class="button" type="button" value="New Book">New Book<a href="/books/new"></a></button>
+        <br>
+        <h1 class="title">All Books:</h1>
         <% @books.each do |book|%>
             <a href=<%= "/books/#{book.id}" %>>
                 <img class="cover_image" src=<%= book.cover != nil ? book.cover : "../images/book_default.png" %>>
