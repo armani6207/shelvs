@@ -23,7 +23,6 @@ body {
     color:#05CEBB;
     font-size: 40px;
     font-family: 'Raleway', sans-serif;
-    margin: 0;
     position: relative;
     bottom: 25px;
 }
@@ -50,10 +49,26 @@ textarea:focus, input:focus{
 
 .link a {
     color: #9CA2A8;
-    underline
 }
 
 .link a:visited{
     color: #9CA2A8;
 }
 
+.library_image {
+    width: 160px;
+}
+
+.name {
+    color:#9EA2A8;
+    font-size: 30px;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 0;
+}
+
+.header {
+    color:#05CEBB;
+    font-size: 30px;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 0;
+}

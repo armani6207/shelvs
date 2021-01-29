@@ -11,6 +11,8 @@
             <form method="POST" action="/libraries">
                 <p>Library Name: <input type="text" name="library[name]" required></p>
 
+                <p>Library Cover Image: <input type="file" name="image"></p>
+
                 <p>Choose Books:</p>
                 
                 <% @books.each do |book| %>

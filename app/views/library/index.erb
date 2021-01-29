@@ -5,10 +5,13 @@
         <title>Libraries | Shelvs</title>
     </head>
     <body>
-        <ul>
+        <h1 class="title">All Libraries:</h1>
         <% @libraries.each do |library|%>
-            <li><a href=<%= "/libraries/#{library.id}" %>><h1><%= "#{library.name} | #{library.user.name}" %></h1></a></li>
+            <a class="library" href=<%= "/libraries/#{library.id}" %>>
+                <img class="library_image" src=<%= library.cover != nil ? library.cover : "../images/library_default.png" %>>
+                <p class="name"><%= "#{library.name}" %></p>
+            </a>
+            <br>
         <% end %>
-        </ul>
     </body>
 </html>

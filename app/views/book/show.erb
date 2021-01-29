@@ -5,12 +5,16 @@
         <title><%= @book.title %> | Shelvs</title>
     </head>
     <body>
-        <h1><%= @book.title %></h1>
-        <small>Written By:<%= @book.author %></small>
-        
-        <h3>Libraries This Book Is In:</h3>
+        <h1 class="title"><%= @book.title %></h1>
+        <h1>Written By:<%= @book.author %></h1>
+        <br>
+        <h3 class="header">Libraries This Book Is In:</h3>
         <% @book.libraries.each do |library| %>
-            <p><%= "#{library.name} | #{library.user.name}" %></p>
+            <a class="library" href=<%= "/libraries/#{library.id}" %>>
+                <img class="library_image" src=<%= library.cover != nil ? library.cover : "../images/library_default.png" %>>
+                <p class="name"><%= "#{library.name}" %></p>
+            </a>
+            <br>
         <%end%>
     </body>
 </html>

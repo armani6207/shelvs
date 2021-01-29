@@ -17,6 +17,9 @@ class LibraryController < ApplicationController
         if !user.libraries.exists?(name: params[:library][:name])
             library = Library.create(params[:library])
             library.update(user_id: session[:user_id])
+            if params[:image].exists?
+                library.cover << params[:image]
+            end
             if !params[:book][:title] != ""
                 library.books << Book.create(params[:book])
             end

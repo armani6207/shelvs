@@ -6,16 +6,24 @@
     </head>
 
     <body>
+        <br>
+        <h1 class="title"><%= @user.name %></h1>
+        <h3 class="header">Libraries:</h3>
+
+        <% @libraries.each do |library|%>
+            <a class="library" href=<%= "/libraries/#{library.id}" %>>
+                <img class="library_image" src=<%= library.cover != nil ? library.cover : "../images/library_default.png" %>>
+                <p class="name"><%= "#{library.name}" %></p>
+            </a>
+            <br>
+        <% end %>
+
         <% if Helpers.current_user(session) == @user %>
             <form action="/user/<%= @user.id %>/edit">
                 <input type="submit" Value="Edit Account Info">
             </form>
         <% end %>
-        <h1><%= @user.name %></h1>
-        <h3>Libraries:</h3>
-        <% @libraries.each do |library|%>
-            <a href=<%= "/libraries/#{library.id}" %>><p><%= "#{library.name}" %></p></a>
-        <% end %>
+        
     </body>
 
 </html>
