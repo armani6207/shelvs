@@ -19,7 +19,7 @@ class LibraryController < ApplicationController
         if !user.libraries.exists?(name: params[:library][:name])
             library = Library.create(params[:library])
             library.update(user_id: session[:user_id])
-            if !params[:book][:title] != ""
+            if params[:book][:title] != ""
                 library.books << Book.create(params[:book])
             end
             redirect "/libraries/#{library.id}"
@@ -41,7 +41,6 @@ class LibraryController < ApplicationController
     get '/libraries/:id/edit' do
         @books = Book.all
         @session = session
-
         if Library.exists?(params[:id])
             @library = Library.find(params[:id])
             erb :'/library/edit'
@@ -53,21 +52,30 @@ class LibraryController < ApplicationController
     patch '/libraries/:id' do 
         user = User.find(session[:user_id])
         library = Library.find(params[:id])
-        Helpers.redirect_if_logged_out(session, library.user)
-        if (library.name != params[:library][:name] ? !user.libraries.exists?(name: params[:library][:name]) : true)
-            library.update(params[:library])
-            if params[:book][:title] != ""
-                library.books << Book.create(params[:book])
+        if Helpers.current_user(session) == user
+            if (library.name != params[:library][:name] ? !user.libraries.exists?(name: params[:library][:name]) : true)
+                library.update(params[:library])
+                if params[:book][:title] != ""
+                    library.books << Book.create(params[:book])
+                end
+                redirect "/libraries/#{library.id}"
+            else
+                redirect '/error'
             end
-            redirect "/libraries/#{library.id}"
         else
             redirect '/error'
         end
     end
 
     delete '/libraries/:id' do
-        Library.delete(params[:id])
-        redirect '/books'
+        library = Library.find(params[:id])
+        user = library.user
+        if Helpers.current_user(session) == user
+            library.delete
+            redirect '/books'
+        else
+            redirect '/error'
+        end
     end
 
 end

@@ -27,27 +27,33 @@ class AccountController < ApplicationController
 
     patch '/user/:id' do
         user = User.find(params[:id])
-        if (user.email != params["email"] ? !User.exists?(email: params["email"]) : true)
-            user.update(name: params["name"], email: params["email"])
-        
-            if params["current_password"] != ""
-                if user.authenticate(params["current_password"])
-                    user.password=(params["new_password"])
-                    user.save ? (redirect '/account') : (redirect '/error')
+        if Helpers.current_user(session) == user
+            if (user.email != params["email"] ? !User.exists?(email: params["email"]) : true)
+                user.update(name: params["name"], email: params["email"])
+                
+                if params["current_password"] != ""
+                    if user.authenticate(params["current_password"])
+                        user.password=(params["new_password"])
+                        user.save ? (redirect '/account') : (redirect '/error')
+                    else
+                        redirect '/error'
+                    end
                 else
-                    redirect '/error'
+                    redirect '/account'
                 end
             else
-                redirect '/account'
+                redirect "/user/#{user.id}/edit"
             end
         else
-            redirect "/user/#{user.id}/edit"
+            redirect '/error'
         end
     end
 
     delete '/user/:id' do
-        User.delete(params[:id])
-        redirect '/logout'
+        if Helpers.current_user(session) == User.find(params[:id])
+            User.delete(params[:id])
+            redirect '/logout'
+        end
     end
 
 end
