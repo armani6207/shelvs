@@ -15,7 +15,7 @@
                 <input type="hidden" name="_method" value="PATCH">
                 
                 <img class="library_image" src=<%= @library.cover != nil ? @library.cover : "../../images/library_default.png" %>>
-                <input type="file" name="image">
+                <!--<input type="file" name="image" accept="image/*">-->
 
                 <p>Library Name: <input type="text" name="library[name]" value="<%= @library.name %>" required></p>
 
