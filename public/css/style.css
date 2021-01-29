@@ -1,3 +1,59 @@
 body {
-   background:#1D2025;
+    font-family: 'Source Sans Pro', sans-serif;
+    color:#ADB0B6;
+    background:#1D2025;
 }
+
+.form {
+    text-align: center;
+    margin: 100px auto;
+    width: 350px;
+    background: #3A424C;
+    padding: 60px;
+}
+
+.form input {
+    font-size: 18px;
+    padding: 10px 20px 10px 5px;
+    border: none;
+    background: none;
+}
+
+.title {
+    color:#05CEBB;
+    font-size: 40px;
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    position: relative;
+    bottom: 25px;
+}
+
+.button {
+    background: #05CEBB;
+    width: 90px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 30px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.field {
+    display: block;
+}
+.form svg {
+    height: 25px;
+    vertical-align: auto;
+}
+
+.link a {
+    color: #9CA2A8;
+    underline
+}
+
+.link a:visited{
+    color: #9CA2A8;
+}
+
